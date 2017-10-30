@@ -4,10 +4,6 @@ FROM alpine:latest
 # Maintainer
 MAINTAINER Günther Morhart
 
-# Environments
-ENV http_proxy=http://10.167.16.21:80
-ENV https_proxy=http://10.167.16.21:80
-
 
 ENV TIMEZONE            Europa/Berlin
 ENV PHP_MEMORY_LIMIT    512M
