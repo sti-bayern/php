@@ -4,6 +4,9 @@ FROM alpine:latest
 # Maintainer
 MAINTAINER Günther Morhart
 
+# Environments
+ENV http_proxy=http://10.167.16.21:80
+ENV https_proxy=http://10.167.16.21:80
 
 
 ENV TIMEZONE            Europa/Berlin
@@ -16,7 +19,7 @@ ENV PHP_MAX_POST        100M
 RUN	apk update && \
 	apk upgrade && \
 	apk add --update tzdata && \
-	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
+	#cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
 		php5-mcrypt \
