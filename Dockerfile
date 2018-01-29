@@ -15,7 +15,6 @@ ENV PHP_MAX_POST        100M
 RUN	apk update && \
 	apk upgrade && \
 	apk add --update tzdata && \
-	#cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
 		php5-mcrypt \
@@ -29,12 +28,11 @@ RUN	apk update && \
 		php5-zip \
 		php5-mysql \
 		php5-sqlite3 \
-		#php5-apcu \
+        php5-ldap \
 		php5-pdo_pgsql \
 		php5-bcmath \
 		php5-gd \
 		php5-pgsql \
-		#php5-xcache \
 		php5-odbc \
 		php5-pdo_mysql \
 		php5-pdo_sqlite \
@@ -42,7 +40,6 @@ RUN	apk update && \
 		php5-xmlreader \
 		php5-xmlrpc \
 		php5-bz2 \
-		#php5-memcache \
 		php5-mssql \
 		php5-iconv \
 		php5-pdo_dblib \
