@@ -17,35 +17,37 @@ RUN	apk update && \
 	apk add --update tzdata && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
-		php5-mcrypt \
-		php5-soap \
-		php5-openssl \
-		php5-gmp \
-		php5-pdo_odbc \
-		php5-json \
-		php5-dom \
-		php5-pdo \
-		php5-zip \
-		php5-mysql \
-		php5-sqlite3 \
-                php5-ldap \
-		php5-pdo_pgsql \
 		php5-bcmath \
+		php5-bz2 \
+		php5-ctype \
+		php5-curl \
+		php5-dom \
+		php5-fpm && \
 		php5-gd \
-		php5-pgsql \
-		php5-odbc \
-		php5-pdo_mysql \
-		php5-pdo_sqlite \
 		php5-gettext \
+		php5-gmp \
+		php5-iconv \
+		php5-json \
+                php5-ldap \
+		php5-mcrypt \
+		php5-mssql \
+		php5-mysql \
+		php5-odbc \
+		php5-openssl \
+		php5-pdo \
+		php5-pdo_dblib \
+		php5-pdo_mysql \
+		php5-pdo_odbc \
+		php5-pdo_pgsql \
+		php5-pdo_sqlite \
+		php5-pgsql \
+		php5-soap \
+		php5-sqlite3 \
 		php5-xmlreader \
 		php5-xmlrpc \
-		php5-bz2 \
-		php5-mssql \
-		php5-iconv \
-		php5-pdo_dblib \
-		php5-curl \
-		php5-ctype \
-		php5-fpm && \
+		php5-zip \
+		php5-zlib \
+		
 
 # Set environments
 sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf && \
