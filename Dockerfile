@@ -22,7 +22,7 @@ RUN	apk update && \
 		php5-ctype \
 		php5-curl \
 		php5-dom \
-		php5-fpm && \
+		php5-fpm \
 		php5-gd \
 		php5-gettext \
 		php5-gmp \
@@ -46,7 +46,7 @@ RUN	apk update && \
 		php5-xmlreader \
 		php5-xmlrpc \
 		php5-zip \
-		php5-zlib \
+		php5-zlib && \
 		
 
 # Set environments
