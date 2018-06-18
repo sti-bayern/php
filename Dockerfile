@@ -51,7 +51,7 @@ RUN	apk update && \
 #
 # wkhtmltopdf
 #
-RUN apk add --no-cache \
+    apk add --no-cache \
             xvfb \
             # Additionnal dependencies for better rendering
             ttf-freefont \
@@ -74,7 +74,7 @@ Xvfb :0 -screen 0 1024x768x24 -ac +extension GLX +render -noreset & \n\
 DISPLAY=:0.0 wkhtmltopdf-origin $@ \n\
 killall Xvfb\
 ' > /usr/bin/wkhtmltopdf && \
-    chmod +x /usr/bin/wkhtmltopdf
+    chmod +x /usr/bin/wkhtmltopdf && \
 		
 
 # Set environments
