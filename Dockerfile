@@ -3,12 +3,6 @@ FROM adbv/base
 # Maintainer
 MAINTAINER Günther Morhart
 
-# Proxy
-ARG proxy=""
-ENV http_proxy=http://10.167.16.21:80
-ENV https_proxy=http://10.167.16.21:80
-ENV no_proxy="localhost, *.bvv.bayern.de, *.blva.bayern.de, *.lvg.bayern.de, *.bybn"
-
 # Let's roll
 # ------------------------------------------------------
 RUN	apk update && \
@@ -50,20 +44,26 @@ RUN	apk update && \
 
 # wkhtmltopdf
 # ------------------------------------------------------
-RUN	apk add --no-cache \
+RUN apk add --no-cache \
             xvfb \
             # Additionnal dependencies for better rendering
             ttf-freefont \
             fontconfig \
             dbus
 # Install wkhtmltopdf from `testing` repository
-RUN	apk add --no-cache \
+RUN apk add qt5-qtbase-dev \
+            wkhtmltopdf \
+            --no-cache \
             --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
-            --allow-untrusted \
-            qt5-qtbase-dev \
-            wkhtmltopdf
+            --allow-untrusted
 # Wrapper for xvfb
-COPY wkhtmltopdf /usr/bin/wkhtmltopdf
+RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \
+    echo $'#!/usr/bin/env sh\n\
+Xvfb :0 -screen 0 1024x768x24 -ac +extension GLX +render -noreset & \n\
+DISPLAY=:0.0 wkhtmltopdf-origin $@ \n\
+killall Xvfb\
+' > /usr/bin/wkhtmltopdf && \
+    chmod +x /usr/bin/wkhtmltopdf
 # ------------------------------------------------------
 
 # PHP
