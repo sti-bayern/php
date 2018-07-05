@@ -32,7 +32,8 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-xmlwriter \
         php7-xsl \
         php7-zip \
-        php7-zlib
+        php7-zlib \
+        php7-ldap
 
 COPY php.ini /etc/php7/conf.d/90-php.ini
 COPY www.conf /etc/php7/php-fpm.d/www.conf
