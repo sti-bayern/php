@@ -73,6 +73,7 @@ RUN	sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf && 
     sed -i "s|;*listen\s*=\s*127.0.0.1:9000|listen = 9000|g" /etc/php5/php-fpm.conf && \
     sed -i "s|;*listen\s*=\s*/||g" /etc/php5/php-fpm.conf
 COPY php.ini /etc/php5/conf.d/90-php.ini
+COPY php-fpm.conf /etc/php5/php-fpm.conf
 COPY www.conf /etc/php5/fpm.d/www.conf
 # ------------------------------------------------------
 
