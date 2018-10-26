@@ -6,7 +6,6 @@ LABEL maintainer="Günther Morhart"
 # Setup
 #
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-        pdftk \
         php7 \
         php7-ctype \
         php7-curl \
@@ -17,7 +16,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-intl \
         php7-json \
         php7-mbstring \
-        php7-mysqlnd \
+        php7-mysqli \
         php7-pdo \
         php7-pdo_mysql \
         php7-pdo_pgsql \
