@@ -10,9 +10,6 @@ RUN	apk update && \
 	apk add --update tzdata && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
-	        libintl \
-		icu \
-		icu-dev \
 		php5-bcmath \
 		php5-bz2 \
 		php5-ctype \
