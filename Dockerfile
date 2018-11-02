@@ -10,6 +10,9 @@ RUN	apk update && \
 	apk add --update tzdata && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
+	        libintl \
+		icu \
+		icu-dev \
 		php5-bcmath \
 		php5-bz2 \
 		php5-ctype \
@@ -20,8 +23,9 @@ RUN	apk update && \
 		php5-gettext \
 		php5-gmp \
 		php5-iconv \
+		php5-intl \
 		php5-json \
-        php5-ldap \
+                php5-ldap \
 		php5-mcrypt \
 		php5-mssql \
 		php5-mysql \
