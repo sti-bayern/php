@@ -48,11 +48,13 @@ RUN	apk update && \
 RUN apk add --no-cache \
             xvfb \
             # Additionnal dependencies for better rendering
-            ttf-freefont \
+            ttf-freefont ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family
             fontconfig \
             dbus
 # Install wkhtmltopdf from `testing` repository
 RUN apk add qt5-qtbase-dev \
+            libgcc libstdc++ libx11 glib libxrender libxext libintl \
+            libcrypto1.0 libssl1.0 \
             wkhtmltopdf \
             --no-cache \
             --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
