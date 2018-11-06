@@ -48,7 +48,7 @@ RUN	apk update && \
 RUN apk add --no-cache \
             xvfb \
             # Additionnal dependencies for better rendering
-            ttf-freefont ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family
+            ttf-freefont ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family \
             fontconfig \
             dbus
 # Install wkhtmltopdf from `testing` repository
