@@ -1,7 +1,7 @@
-FROM adbv/base
+FROM akilli/base
 
 # Maintainer
-MAINTAINER Günther Morhart
+MAINTAINER STI Bayern
 
 # Let's roll
 # ------------------------------------------------------
@@ -22,7 +22,7 @@ RUN	apk update && \
 		php5-iconv \
 		php5-intl \
 		php5-json \
-                php5-ldap \
+        php5-ldap \
 		php5-mcrypt \
 		php5-mssql \
 		php5-mysql \
