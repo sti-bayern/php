@@ -1,4 +1,4 @@
-FROM adbv/base
+FROM akilli/base
 
 # Maintainer
 MAINTAINER STI Bayern
