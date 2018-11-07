@@ -1,4 +1,4 @@
-FROM akilli/base
+FROM adbv/base
 
 # Maintainer
 MAINTAINER STI Bayern
@@ -10,37 +10,37 @@ RUN	apk update && \
 	apk add --update tzdata && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
-		php5-bcmath \
-		php5-bz2 \
-		php5-ctype \
-		php5-curl \
-		php5-dom \
-		php5-fpm \
-		php5-gd \
-		php5-gettext \
-		php5-gmp \
-		php5-iconv \
-		php5-intl \
-		php5-json \
-        php5-ldap \
-		php5-mcrypt \
-		php5-mssql \
-		php5-mysql \
-		php5-odbc \
-		php5-openssl \
-		php5-pdo \
-		php5-pdo_dblib \
-		php5-pdo_mysql \
-		php5-pdo_odbc \
-		php5-pdo_pgsql \
-		php5-pdo_sqlite \
-		php5-pgsql \
-		php5-soap \
-		php5-sqlite3 \
-		php5-xmlreader \
-		php5-xmlrpc \
-		php5-zip \
-		php5-zlib
+            php5-bcmath \
+            php5-bz2 \
+            php5-ctype \
+            php5-curl \
+            php5-dom \
+            php5-fpm \
+            php5-gd \
+            php5-gettext \
+            php5-gmp \
+            php5-iconv \
+            php5-intl \
+            php5-json \
+            php5-ldap \
+            php5-mcrypt \
+            php5-mssql \
+            php5-mysql \
+            php5-odbc \
+            php5-openssl \
+            php5-pdo \
+            php5-pdo_dblib \
+            php5-pdo_mysql \
+            php5-pdo_odbc \
+            php5-pdo_pgsql \
+            php5-pdo_sqlite \
+            php5-pgsql \
+            php5-soap \
+            php5-sqlite3 \
+            php5-xmlreader \
+            php5-xmlrpc \
+            php5-zip \
+            php5-zlib
 # ------------------------------------------------------
 
 # wkhtmltopdf
