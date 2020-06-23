@@ -1,4 +1,4 @@
-FROM akilli/base
+FROM adbv/base:new
 
 LABEL maintainer="Ayhan Akilli"
 
