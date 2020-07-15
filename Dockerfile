@@ -1,6 +1,6 @@
-FROM adbv/base:new
+FROM adbv/base:v1.0
 
-LABEL maintainer="Ayhan Akilli"
+LABEL maintainer="Guenther Morhart"
 
 ARG CFLAGS="-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 ARG CPPFLAGS="$CFLAGS"
