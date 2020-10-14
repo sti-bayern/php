@@ -3,10 +3,7 @@ FROM adbv/base:v2.0
 LABEL maintainer="Guenther Morhart"
 
 ENV DEV=0
-ENV http_proxy=http://10.167.16.21:80
-ENV https_proxy=http://10.167.16.21:80
-ENV HTTP_PROXY=http://10.167.16.21:80
-ENV HTTPS_PROXY=http://10.167.16.21:80
+
 
 RUN apk add --no-cache \
         php8 \
