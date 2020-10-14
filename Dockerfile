@@ -1,118 +1,59 @@
-FROM adbv/base:v1.0
+FROM adbv/base:v2.0
 
 LABEL maintainer="Guenther Morhart"
 
-ARG CFLAGS="-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
-ARG CPPFLAGS="$CFLAGS"
-ARG LDFLAGS="-Wl,-O1 -Wl,--hash-style=both -pie"
-
-ENV PHP_INI_DIR=/etc/php
-ENV PHP_VERSION=7.4.7
+ENV DEV=0
+ENV http_proxy=http://10.167.16.21:80
+ENV https_proxy=http://10.167.16.21:80
+ENV HTTP_PROXY=http://10.167.16.21:80
+ENV HTTPS_PROXY=http://10.167.16.21:80
 
 RUN apk add --no-cache \
-        argon2-libs \
-        curl \
-        freetype \
-        icu-libs \
-        libbz2 \
-        libedit \
-        libjpeg-turbo \
-        libldap \
-        libpng \
-        libpq \
-        libsodium \
-        libwebp \
-        libxml2 \
-        libxslt \
-        libzip \
-        oniguruma \
-        openssl \
-        sqlite-libs \
-        tar \
-        xz && \
-    # phpize
-    apk add --no-cache --virtual .phpize-deps \
-        autoconf \
-        build-base \
-        dpkg \
-        dpkg-dev \
-        re2c && \
-    # build
-    apk add --no-cache --virtual .build-deps \
-        argon2-dev \
-        bzip2-dev \
-        coreutils \
-        curl-dev \
-        freetype-dev \
-        icu-dev \
-        libedit-dev \
-        libjpeg-turbo-dev \
-        libpng-dev \
-        libsodium-dev \
-        libxml2-dev \
-        libxslt-dev \
-        libzip-dev \
-        libwebp-dev \
-        linux-headers \
-        oniguruma-dev \
-        openldap-dev \
-        openssl-dev \
-        postgresql-dev \
-        sqlite-dev && \
-    cd /tmp && \
-    wget -O php.tar.xz https://www.php.net/get/php-${PHP_VERSION}.tar.xz/from/this/mirror && \
-    mkdir -p \
-        $PHP_INI_DIR/conf.d \
-        /tmp/php && \
-    tar -Jxf php.tar.xz -C /tmp/php --strip-components=1 && \
-    cd /tmp/php && \
-    ./configure \
-        --disable-cgi \
-        --enable-fpm \
-        --enable-ftp \
-        --enable-gd \
-        --enable-intl \
-        --enable-opcache \
-        --enable-option-checking=fatal \
-        --enable-mbstring \
-        --enable-mysqlnd \
-        --enable-soap \
-        --prefix=/usr \
-        --sysconfdir="$PHP_INI_DIR" \
-        --with-bz2 \
-        --with-config-file-path="$PHP_INI_DIR" \
-        --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
-        --with-curl \
-        --with-freetype \
-        --with-jpeg \
-        --with-ldap \
-        --with-ldap-sasl \
-        --with-libedit \
-        --with-openssl \
-        --with-password-argon2 \
-        --with-pdo-mysql \
-        --with-pdo-pgsql \
-        --with-pdo-sqlite \
-        --with-pgsql \
-        --with-sodium=shared \
-        --with-sqlite3 \
-        --with-xsl \
-        --with-webp \
-        --with-zip \
-        --with-zlib && \
-    make -j "$(nproc)" && \
-    find -type f -name '*.a' -delete && \
-    make install && \
-    find /usr/bin /usr/sbin -type f -name 'php*' -perm +0111 -exec strip --strip-all '{}' + || true && \
-    make clean && \
-    mv php.ini-production $PHP_INI_DIR/php.ini && \
-    rm -rf \
-        $PHP_INI_DIR/php-fpm.d/www.conf.default \
-        $PHP_INI_DIR/php-fpm.conf.default \
-        /tmp/* && \
-    apk del \
-        .build-deps \
-        .phpize-deps
-
+        php8 \
+        php8-bz2 \
+        php8-ctype \
+        php8-curl \
+        php8-dom \
+        php8-fileinfo \
+        php8-fpm \
+        php8-ftp \
+        php8-gd \
+        php8-iconv \
+        php8-intl \
+        php8-json \
+        php8-ldap \
+        php8-mbstring \
+        php8-mysqlnd \
+        php8-opcache \
+        php8-openssl \
+        php8-pdo \
+        php8-pdo_mysql \
+        php8-pdo_pgsql \
+        php8-pdo_sqlite \
+        php8-pgsql \
+        php8-phar \
+        php8-posix \
+        php8-session \
+        php8-simplexml \
+        php8-soap \
+        php8-sockets \
+        php8-sodium \
+        php8-sqlite3 \
+        php8-tokenizer \
+        php8-xml \
+        php8-xmlreader \
+        php8-xmlwriter \
+        php8-xsl \
+        php8-zip && \
+    ln -s php8 /etc/php && \
+    ln -s php8 /usr/bin/php && \
+    ln -s php-fpm8 /usr/sbin/php-fpm && \
+    rm -f \
+        /etc/php/php-fpm.d/www.conf \
+        /etc/php/php-fpm.conf && \
+    app-user && \
+    app-chown
 COPY etc/ /etc/php/
-COPY s6/ /s6/php/
+COPY init/ /init/
+
+CMD ["php-fpm"]
